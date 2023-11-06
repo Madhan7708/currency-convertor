@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currency Converter</title>
+    <link rel="icon" href="G:\html\download.png">
+</head>
+<body style="background-color:powderblue; text-align:center;">
+    <h1 style="font-family:'Courier New', Courier, monospace;">Currency Converter</h1>
+    <div>
+        <label for="amount">Enter Amount:</label>
+        <input type="number" id="amount" placeholder="Enter amount" oninput="convertCurrency()">
+    </div>
+    <div>
+        <label for="fromCurrency">From Currency:</label>
+        <select id="fromCurrency" onchange="convertCurrency()">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+        </select>
+    </div>
+    <div>
+        <label for="toCurrency">To Currency:</label>
+        <select id="toCurrency" onchange="convertCurrency()">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+        </select>
+    </div>
+    <div>
+        <p id="result">Result will appear here</p>
+    </div>
+
+    <script>
+        const exchangeRates = {
+            USD: 1,
+            EUR: 0.88, // Example rate, replace with actual exchange rates
+            // Add more currency rates here
+        };
+        function convertCurrency() {
+            const amount = parseFloat(document.getElementById("amount").value);
+            const fromCurrency = document.getElementById("fromCurrency").value;
+            const toCurrency = document.getElementById("toCurrency").value;
+
+            const result = (amount / exchangeRates[fromCurrency]) * exchangeRates[toCurrency];
+
+            document.getElementById("result").textContent = `${amount} ${fromCurrency} is equal to ${result.toFixed(2)} ${toCurrency}`;
+        }
+    </script>
+</body>
+</html>
